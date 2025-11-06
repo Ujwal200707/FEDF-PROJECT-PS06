@@ -1,7 +1,9 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Box } from '@mui/material';
+import { useAppointments } from '../context/AppointmentsContext';
 
 const Appointments = () => {
+  const { appointments } = useAppointments();
 
   return (
     <Box sx={{ padding: 4 }}>
@@ -21,11 +23,24 @@ const Appointments = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell colSpan={6} align="center">
-                No appointments to display
-              </TableCell>
-            </TableRow>
+            {appointments.filter(appointment => appointment.id > 5).length > 0 ? (
+              appointments.filter(appointment => appointment.id > 5).map((appointment) => (
+                <TableRow key={appointment.id}>
+                  <TableCell>{appointment.id}</TableCell>
+                  <TableCell>{appointment.patientName}</TableCell>
+                  <TableCell>{appointment.doctorName}</TableCell>
+                  <TableCell>{appointment.date}</TableCell>
+                  <TableCell>{appointment.time}</TableCell>
+                  <TableCell>{appointment.status}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={6} align="center">
+                  No user-added appointments to display
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
