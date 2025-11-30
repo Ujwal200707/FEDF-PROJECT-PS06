@@ -69,7 +69,7 @@ const Menu = () => {
             background: 'linear-gradient(45deg, #667eea, #764ba2)',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            WebkitTextFillColor: 'teal',
             fontWeight: 'bold'
           }}
         >
